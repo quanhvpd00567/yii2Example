@@ -46,13 +46,32 @@ class NhanvienController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Nhanvien model.
-     * @param integer $id
-     * @return mixed
-     */
+    // public function actionExport()
+    // {
+    //   $data = Nhanvien::find()->all();
+    //   $filename = 'Data-'.Date('YmdGis').'-nhanvien.xls';
+    //    header("Content-type: application/vnd-ms-excel");
+    //    header("Content-Disposition: attachment; filename=".$filename);
+    //      echo '<table border="1" width="100%">
+    //      <thead>
+    //       <tr>
+    //           <th>id</th>
+    //           <th>name</th>
+    //       </tr>
+    //       </thead>';
+    //       foreach($data as $item){
+    //       echo '
+    //             <tr>
+    //               <td>'.$item['id'].'</td>
+    //               <td>'.$item['title'].'</td>
+    //             </tr>
+    //           ';}
+    //         echo '</table>';
+    // }
+
     public function actionView($id)
     {
+
       $this->layout ="layoutadmin";
         return $this->render('view', [
             'model' => $this->findModel($id),

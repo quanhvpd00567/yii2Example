@@ -35,6 +35,7 @@ class BophanController extends Controller
      */
     public function actionIndex()
     {
+      $this->layout ="layoutadmin";
         $searchModel = new BophanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -51,20 +52,18 @@ class BophanController extends Controller
      */
     public function actionView($id)
     {
+      $this->layout ="layoutadmin";
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
-     * @return mixed
-     */
     public function actionCreate()
     {
+      $this->layout ="layoutadmin";
         $model = new Bophan();
         $model->status = 0;
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('index');
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -80,6 +79,7 @@ class BophanController extends Controller
      */
     public function actionUpdate($id)
     {
+      $this->layout ="layoutadmin";
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
