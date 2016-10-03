@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+    //    'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
           //  'id',
@@ -30,19 +30,21 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute'=>'gender',
               'value'=>function($model){
                       if( $model->gender == 1){
-                         return 'nam';
+                         return 'Male';
                       }else
-                      {  return 'Nu';};
-                    }],
+                      {  return 'Female';};
+                    },
+              'contentOptions'=>['style'=>'width: 30px;']
+                  ],
             'email:email',
-             'id_bophan',
-                       [
-                         'attribute'=>'Bo phan',
-                         'value'=>function($data){
-                              $tenbophan = Bophan::getName($data->id_bophan);
-                              return $tenbophan;
-                         }
-                       ],
+               [
+                 'attribute'=>'Bo phan',
+                 'value'=>function($data){
+                      $tenbophan = Bophan::getName($data->id_bophan);
+                      return $tenbophan;
+                 },
+
+               ],
             //password',
             'address',
              'phone',

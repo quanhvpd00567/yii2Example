@@ -64,6 +64,6 @@ class Nhanvien extends \yii\db\ActiveRecord
     public function getList()
     {
           $data = Bophan::find()->asArray()->all();
-        return $data;
+          return $data;
     }
 }

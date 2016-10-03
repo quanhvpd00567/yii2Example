@@ -4,11 +4,11 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Nhanvien;
-use app\models\Bophan;
 use app\models\NhanvienSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Bophan;
 
 /**
  * NhanvienController implements the CRUD actions for Nhanvien model.
@@ -59,11 +59,6 @@ class NhanvienController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Nhanvien model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $this->layout ="layoutadmin";
@@ -71,6 +66,7 @@ class NhanvienController extends Controller
         $listbophan = Bophan::find()->asArray()->all();
       //  $listbophan = $bophan->getList();
         $model->gender =1;
+        $model->status =0;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -91,12 +87,13 @@ class NhanvienController extends Controller
     {
       $this->layout ="layoutadmin";
         $model = $this->findModel($id);
-
+        $listbophan = Bophan::find()->asArray()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listbophan'=> $listbophan,
             ]);
         }
     }

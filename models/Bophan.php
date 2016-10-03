@@ -46,7 +46,7 @@ class Bophan extends \yii\db\ActiveRecord
     }
 
     public function getName($id){
-      $data = Bophan::find($id)->asArray()->one();
+      $data = Bophan::find()->where(['id'=>$id])->asArray()->one();
       return $data['title'];
     }
 }
